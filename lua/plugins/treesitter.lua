@@ -15,7 +15,11 @@ return {
                                 "css",
                                 "sql",
                                 "yaml",
-                                "xml"
+                                "xml",
+                                "php",
+                                "markdown",
+                                "python",
+                                "make"
                         },
                         highlight = { enable = true },
                         indent = { enable = true },
