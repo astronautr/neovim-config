@@ -1,8 +1,8 @@
 return {
         {
                 "lukas-reineke/indent-blankline.nvim",
-                config = function()
-                        require("ibl").setup()
+                config = function(_, opts)
+                        require("ibl").setup(opts)
                 end,
                 opts = {
                         indent = {
@@ -14,8 +14,7 @@ return {
                                 filetypes = {
                                         "help",
                                         "alpha",
-                                        "dashboard",
-                                        "neo-tree",
+                                        "dashboard", "neo-tree",
                                         "Trouble",
                                         "trouble",
                                         "lazy",
@@ -31,6 +30,12 @@ return {
         {
                 "echasnovski/mini.indentscope",
                 version = false,
+                config = function (_, opts)
+                        local indent = require("mini.indentscope")
+
+                        indent.gen_animation.none()
+                        indent.setup(opts)
+                end,
                 opts = {
                         symbol = "│",
                         options = {
