@@ -9,7 +9,7 @@ return {
                                 none_ls.builtins.diagnostics.eslint,
                                 none_ls.builtins.formatting.eslint,
                                 none_ls.builtins.diagnostics.golangci_lint,
-                                none_ls.builtins.formatting.gofumpt,
+                                none_ls.builtins.formatting.goimports,
                                 none_ls.builtins.diagnostics.stylelint,
                                 none_ls.builtins.formatting.stylelint,
                                 none_ls.builtins.formatting.phpcsfixer,
