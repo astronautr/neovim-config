@@ -17,4 +17,3 @@ vim.g.mapleader = " "
 -- Plugins setup
 require("options")
 require("lazy").setup("plugins")
-
