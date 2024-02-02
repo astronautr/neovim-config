@@ -19,6 +19,8 @@ return {
                                         "intelephense",
                                         "jsonls",
                                         "eslint",
+                                        "dockerls",
+                                        "taplo"
                                 },
                         })
                 end,
@@ -38,6 +40,9 @@ return {
                         lspconfig.intelephense.setup({ capabilities = capabilities })
                         lspconfig.jsonls.setup({ capabilities = capabilities })
                         lspconfig.eslint.setup({ capabilities = capabilities })
+                        lspconfig.dockerls.setup({ capabilities = capabilities })
+                        lspconfig.taplo.setup({ capabilities = capabilities })
+
 
                         vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
                         vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})

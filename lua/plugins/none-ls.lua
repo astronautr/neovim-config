@@ -19,6 +19,7 @@ return {
                                 none_ls.builtins.diagnostics.checkmake,
                                 none_ls.builtins.formatting.shfmt,
                                 none_ls.builtins.diagnostics.shellcheck,
+                                none_ls.builtins.diagnostics.hadolint
                         },
                 })
 
