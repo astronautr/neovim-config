@@ -13,7 +13,6 @@ return {
 			require("gitsigns").setup()
 
 			vim.keymap.set({ "n", "v" }, "<leader>gp", ":Gitsigns preview_hunk <CR>", {})
-			vim.keymap.set({ "n", "v" }, "<leader>gt", ":Gitsigns toggle_current_line_blame <CR>", {})
 			vim.api.nvim_create_autocmd("VimEnter", {
 				callback = function()
 					vim.cmd("Gitsigns toggle_current_line_blame")
