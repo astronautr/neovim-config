@@ -7,11 +7,18 @@ return {
 		},
 		config = function()
 			local builtin = require("telescope.builtin")
+			require("telescope").setup({
+				pickers = {
+					oldfiles = {
+						cwd_only = true
+					}
+				}
+			})
 
 			vim.keymap.set("n", "<C-p>", builtin.find_files, {})
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-			vim.keymap.set({ "n", "v" }, "<leader>fr", builtin.oldfiles)
+			vim.keymap.set({ "n", "v" }, "<leader>fr", builtin.oldfiles, {})
 		end,
 	},
 	{
