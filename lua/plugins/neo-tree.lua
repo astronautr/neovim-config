@@ -9,7 +9,10 @@ return {
         config = function ()
                 require("neo-tree").setup({
                         filesystem = {
-                                hijack_netrw_behavior = "open_default"
+                                hijack_netrw_behavior = "open_default",
+                                follow_current_file = {
+                                        enabled = true
+                                }
                         }
                 })
 
