@@ -7,12 +7,21 @@ return {
 		},
 		config = function()
 			local builtin = require("telescope.builtin")
+			local actions = require("telescope.actions")
+
 			require("telescope").setup({
 				pickers = {
 					oldfiles = {
-						cwd_only = true
-					}
-				}
+						cwd_only = true,
+					},
+				},
+				defaults = {
+					mappings = {
+						i = {
+							["<esc>"] = actions.close,
+						},
+					},
+				},
 			})
 
 			vim.keymap.set("n", "<C-p>", builtin.find_files, {})
