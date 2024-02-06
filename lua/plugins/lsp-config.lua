@@ -54,6 +54,7 @@ return {
                         vim.keymap.set("n", "go", vim.lsp.buf.outgoing_calls, {})
                         vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
                         vim.keymap.set("n", "gp", vim.lsp.buf.signature_help, {})
+                        vim.keymap.set({"n", "v"}, "<leader>cr", vim.lsp.buf.rename,{})
                 end,
         },
 }

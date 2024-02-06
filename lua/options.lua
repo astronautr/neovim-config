@@ -21,3 +21,11 @@ local function saveAndExecute()
 end
 
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", saveAndExecute, { noremap = true, silent = true })
+
+vim.api.nvim_create_user_command(
+    'Vb',
+    function(opts)
+        vim.cmd("vert sb "..opts.args)
+    end,
+    { nargs = 1 }
+)
