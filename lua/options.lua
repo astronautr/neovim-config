@@ -4,6 +4,8 @@ vim.cmd("set smartindent")
 vim.cmd("set clipboard+=unnamed")
 vim.cmd("set nu")
 vim.cmd("set rnu")
+vim.cmd("set noswapfile")
+vim.cmd("set nobackup")
 
 vim.o.mouse = "a"
 
@@ -22,10 +24,6 @@ end
 
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", saveAndExecute, { noremap = true, silent = true })
 
-vim.api.nvim_create_user_command(
-    'Vb',
-    function(opts)
-        vim.cmd("vert sb "..opts.args)
-    end,
-    { nargs = 1 }
-)
+vim.api.nvim_create_user_command("Vb", function(opts)
+	vim.cmd("vert sb " .. opts.args)
+end, { nargs = 1 })
