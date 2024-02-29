@@ -14,12 +14,17 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.keymap.set({ "n", "v" }, "<M-j>", ":m .+1<CR>", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "<M-k>", ":m .-2<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<M-K>", ":m .-2<CR>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<M-J>", ":m .+1<CR>", { noremap = true, silent = true })
+---
+vim.keymap.set("n", "<M-h>", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-l>", ":vertical resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-j>", ":resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-k>", ":resize +2<CR>", { noremap = true, silent = true })
 
 local function saveAndExecute()
 	vim.lsp.buf.format({})
-	vim.cmd("w")
+	vim.cmd("wa")
 end
 
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", saveAndExecute, { noremap = true, silent = true })
