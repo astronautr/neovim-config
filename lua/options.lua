@@ -17,10 +17,13 @@ vim.o.smartcase = true
 vim.keymap.set({ "n", "v" }, "<M-K>", ":m .-2<CR>", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "<M-J>", ":m .+1<CR>", { noremap = true, silent = true })
 ---
-vim.keymap.set("n", "<M-h>", ":vertical resize -2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-l>", ":vertical resize +2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-j>", ":resize -2<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<M-k>", ":resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-l>", ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-h>", ":vertical resize +2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-k>", ":resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<M-j>", ":resize +2<CR>", { noremap = true, silent = true })
+
+---
+vim.keymap.set({ "n", "v" }, "<leader>w", ":bd<CR>", { noremap = true, silent = true })
 
 local function saveAndExecute()
 	vim.lsp.buf.format({})
