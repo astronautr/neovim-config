@@ -20,8 +20,8 @@ vim.o.signcolumn = "yes" -- Столбец для знаков (git, диагн�
 vim.opt.cursorline = true -- Подсветка текущей строки
 
 -- Цвета и отображение
-vim.o.showmode = false     -- Отключает показ режима в командной строке
-vim.opt.list = true        -- Показывает спецсимволы
+vim.o.showmode = false -- Отключает показ режима в командной строке
+vim.opt.list = true    -- Показывает спецсимволы
 vim.opt.listchars = { nbsp = '␣' }
 
 --[[ Поиск и замена ]] --
@@ -80,14 +80,13 @@ vim.keymap.set("n", "<M-j>", ":resize +2<CR>", { noremap = true, silent = true }
 vim.keymap.set({ "n", "v" }, "<leader>w", ":bd<CR>", { noremap = true, silent = true })
 
 local function saveAndExecute()
-	vim.lsp.buf.format({})
-	vim.cmd("wa")
+    vim.lsp.buf.format({})
+    vim.cmd("wa")
 end
 
 
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", saveAndExecute, { noremap = true, silent = true })
 
 vim.api.nvim_create_user_command("Vb", function(opts)
-	vim.cmd("vert sb " .. opts.args)
+    vim.cmd("vert sb " .. opts.args)
 end, { nargs = 1 })
-

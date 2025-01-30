@@ -424,6 +424,7 @@ local plugins = {
                     component_separators = { left = "", right = "" },
                     section_separators = { left = "", right = "" },
                     globalstatus = false,
+                    disabled_filetypes = { "neo-tree" }
                 },
                 sections = {
                     lualine_a = { "mode" },
@@ -431,7 +432,8 @@ local plugins = {
                     lualine_c = {
                         {
                             "filename",
-                            path = 1
+                            path = 1,
+                            symbols = { modified = "[+]", readonly = "[-]", unnamed = "[No Name]" },
                         },
                     },
                     lualine_x = { "encoding", "fileformat", "filetype" },
@@ -458,7 +460,7 @@ local plugins = {
             { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
             { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
         },
-        --[[ opts = {
+        opts = {
             options = {
                 offsets = {
                     {
@@ -469,7 +471,7 @@ local plugins = {
                     },
                 },
             },
-        }, ]]
+        },
         config = function(_, opts)
             vim.opt.termguicolors = true
             require("bufferline").setup(opts)
@@ -527,6 +529,27 @@ local plugins = {
             vim.o.timeoutlen = 300
         end,
         opts = {},
+    },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        },
+        config = function()
+            require("neo-tree").setup({
+                filesystem = {
+                    hijack_netrw_behavior = "open_default",
+                    follow_current_file = {
+                        enabled = true
+                    }
+                }
+            })
+
+            vim.keymap.set('n', '<C-n>', ':Neotree filesystem toggle left<CR>')
+        end
     }
 }
 
