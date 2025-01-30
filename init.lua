@@ -233,6 +233,17 @@ local plugins = {
                 },
             })
 
+            lspconfig.eslint.setup({
+                capabilities = capabilities,
+                on_attach = function(_, bufnr)
+                    -- Автоисправление при сохранении
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        buffer = bufnr,
+                        command = "EslintFixAll",
+                    })
+                end,
+            })
+
             -- Настройка остальных серверов
             local servers = {
                 "ts_ls",
@@ -246,34 +257,7 @@ local plugins = {
                 "sqlls"
             }
             for _, server in ipairs(servers) do
-                if server == "eslint" then
-                    lspconfig.eslint.setup({
-                        capabilities = capabilities,
-                        settings = {
-                            -- Использовать локальный eslint
-                            useESLintClass = true,
-                            experimental = {
-                                useFlatConfig = true,
-                            },
-                            -- Проверять только нужные файлы
-                            validate = {
-                                "javascript",
-                                "javascriptreact",
-                                "typescript",
-                                "typescriptreact",
-                            },
-                        },
-                        on_attach = function(client, bufnr)
-                            -- Автоисправление при сохранении
-                            vim.api.nvim_create_autocmd("BufWritePre", {
-                                buffer = bufnr,
-                                command = "EslintFixAll",
-                            })
-                        end,
-                    })
-                else
-                    setup_lsp(server)
-                end
+                setup_lsp(server)
             end
 
             -- Маппинги
