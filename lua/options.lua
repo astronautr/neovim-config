@@ -56,6 +56,9 @@ vim.o.pumheight = 15                   -- Максимальная высота 
 -- Форматирование
 vim.o.formatoptions = "jcroqlnt" -- Опции автоформатирования
 
+-- Netrw
+vim.g.netrw_liststyle = 3
+
 --[[ Маппинги клавиш ]] --
 -- Лидер
 vim.g.mapleader = " "

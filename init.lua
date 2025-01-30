@@ -56,8 +56,6 @@ local plugins = {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-treesitter/nvim-treesitter',
-
-
         },
         config = function()
             local telescope = require('telescope')
@@ -415,6 +413,74 @@ local plugins = {
                 end,
             })
         end,
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("lualine").setup({
+                options = {
+                    theme = "auto",
+                    component_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
+                    globalstatus = false,
+                },
+                sections = {
+                    lualine_a = { "mode" },
+                    lualine_b = { "branch", "diff", "diagnostics" },
+                    lualine_c = {
+                        {
+                            "filename",
+                            path = 1
+                        },
+                    },
+                    lualine_x = { "encoding", "fileformat", "filetype" },
+                    lualine_y = { "progress" },
+                    lualine_z = { "location" },
+                },
+                inactive_sections = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = { "filename" },
+                    lualine_x = { "location" },
+                    lualine_y = {},
+                    lualine_z = {},
+                },
+            })
+        end,
+    },
+    {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        event = "VeryLazy",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        keys = {
+            { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+            { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+        },
+        --[[ opts = {
+            options = {
+                offsets = {
+                    {
+                        filetype = "neo-tree",
+                        text = "Neo-tree",
+                        highlight = "Directory",
+                        text_align = "left",
+                    },
+                },
+            },
+        }, ]]
+        config = function(_, opts)
+            vim.opt.termguicolors = true
+            require("bufferline").setup(opts)
+        end,
+    },
+    {
+        'numToStr/Comment.nvim',
+        lazy = false,
+        config = function()
+            require('Comment').setup()
+        end
     }
 }
 
