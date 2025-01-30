@@ -481,6 +481,52 @@ local plugins = {
         config = function()
             require('Comment').setup()
         end
+    },
+    {
+        "RRethy/vim-illuminate",
+        config = function()
+            require("illuminate").configure({
+                providers = {
+                    "lsp",
+                    "treesitter",
+                    "regex",
+                },
+                delay = 100,
+                filetypes_denylist = {
+                    "dirbuf",
+                    "dirvish",
+                    "fugitive",
+                },
+            })
+        end,
+    },
+    {
+        "echasnovski/mini.indentscope",
+        version = false,
+        opts = {
+            symbol = "│",
+            options = { try_as_border = true },
+        },
+        config = function(_, opts)
+            require("mini.indentscope").setup(opts)
+        end,
+    },
+    {
+        "echasnovski/mini.pairs",
+        version = "*",
+        event = "VeryLazy",
+        config = function()
+            require("mini.pairs").setup({})
+        end,
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {},
     }
 }
 

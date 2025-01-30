@@ -22,7 +22,7 @@ vim.opt.cursorline = true -- Подсветка текущей строки
 -- Цвета и отображение
 vim.o.showmode = false     -- Отключает показ режима в командной строке
 vim.opt.list = true        -- Показывает спецсимволы
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { nbsp = '␣' }
 
 --[[ Поиск и замена ]] --
 vim.o.ignorecase = true -- Игнорирует регистр при поиске
