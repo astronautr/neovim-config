@@ -416,6 +416,7 @@ local plugins = {
     },
     {
         "nvim-lualine/lualine.nvim",
+        pin = true,
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             require("lualine").setup({
@@ -453,7 +454,7 @@ local plugins = {
     },
     {
         "akinsho/bufferline.nvim",
-        version = "*",
+        pin = true,
         event = "VeryLazy",
         dependencies = "nvim-tree/nvim-web-devicons",
         keys = {
@@ -479,6 +480,7 @@ local plugins = {
     },
     {
         'numToStr/Comment.nvim',
+        pin = true,
         lazy = false,
         config = function()
             require('Comment').setup()
@@ -486,6 +488,7 @@ local plugins = {
     },
     {
         "RRethy/vim-illuminate",
+        pin = true,
         config = function()
             require("illuminate").configure({
                 providers = {
@@ -504,7 +507,7 @@ local plugins = {
     },
     {
         "echasnovski/mini.indentscope",
-        version = false,
+        pin = true,
         opts = {
             symbol = "│",
             options = { try_as_border = true },
@@ -515,7 +518,7 @@ local plugins = {
     },
     {
         "echasnovski/mini.pairs",
-        version = "*",
+        pin = true,
         event = "VeryLazy",
         config = function()
             require("mini.pairs").setup({})
@@ -523,6 +526,7 @@ local plugins = {
     },
     {
         "folke/which-key.nvim",
+        pin = true,
         event = "VeryLazy",
         init = function()
             vim.o.timeout = true
@@ -532,6 +536,7 @@ local plugins = {
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
+        pin = true,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons",
