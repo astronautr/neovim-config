@@ -21,8 +21,8 @@ vim.opt.cursorline = true -- Подсветка текущей строки
 
 -- Цвета и отображение
 vim.o.showmode = false -- Отключает показ режима в командной строке
-vim.opt.list = true    -- Показывает спецсимволы
-vim.opt.listchars = { nbsp = '␣' }
+--[[ vim.opt.list = true    -- Показывает спецсимволы
+vim.opt.listchars = { nbsp = '␣' } ]]
 
 --[[ Поиск и замена ]] --
 vim.o.ignorecase = true -- Игнорирует регистр при поиске
@@ -55,9 +55,6 @@ vim.o.pumheight = 15                   -- Максимальная высота 
 
 -- Форматирование
 vim.o.formatoptions = "jcroqlnt" -- Опции автоформатирования
-
--- Netrw
-vim.g.netrw_liststyle = 3
 
 --[[ Маппинги клавиш ]] --
 -- Лидер

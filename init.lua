@@ -26,7 +26,7 @@ local plugins = {
         priority = 1000,
         pin = true,
         config = function()
-            require("catppuccin").setup()
+            require("catppuccin").setup({ flavour = "macchiato" })
             vim.cmd.colorscheme "catppuccin"
         end
     },
@@ -103,9 +103,15 @@ local plugins = {
                     current_buffer_fuzzy_find = {
                         skip_empty_lines = true,
                     },
+                    oldfiles = {
+                        cwd_only = true,
+                    },
+
                 }
             })
 
+            vim.keymap.set({ "n", "v" }, "<leader>ft", builtin.treesitter, { desc = "TreeSitter" })
+            vim.keymap.set({ "n", "v" }, "<leader>fr", builtin.oldfiles, { desc = 'Recent files' })
             vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
             vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Find git files' })
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Find text' })
@@ -274,7 +280,7 @@ local plugins = {
                     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
                     vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-                    vim.keymap.set('n', '<leader>f', function()
+                    vim.keymap.set('n', '<leader>fb', function()
                         vim.lsp.buf.format { async = true }
                     end, opts)
                 end,
@@ -434,7 +440,6 @@ local plugins = {
                         {
                             "filename",
                             path = 1,
-                            symbols = { modified = "[+]", readonly = "[-]", unnamed = "[No Name]" },
                         },
                     },
                     lualine_x = { "encoding", "fileformat", "filetype" },
@@ -554,7 +559,7 @@ local plugins = {
 
             vim.keymap.set('n', '<C-n>', ':Neotree filesystem toggle left<CR>')
         end
-    }
+    },
 }
 
 -- Загрузка плагинов
