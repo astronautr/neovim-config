@@ -160,6 +160,15 @@ local plugins = {
             { "<C-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
     },
+    -- Подсветка отступов
+    {
+        "echasnovski/mini.indentscope",
+        version = false,
+        opts = {
+            symbol = "│",
+            options = { try_as_border = true },
+        },
+    },
     -- Тема
     {
         "catppuccin/nvim",
