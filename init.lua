@@ -79,6 +79,7 @@ local plugins = {
         config = function()
             require("lspconfig").lua_ls.setup {}
             require("lspconfig").ts_ls.setup {}
+            require("lspconfig").gopls.setup {}
 
             vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end);
         end
