@@ -169,6 +169,7 @@ local plugins = {
             options = { try_as_border = true },
         },
     },
+    -- Автоматичсое закрытие скобок и кавычек
     {
         "echasnovski/mini.pairs",
         opts = {
@@ -177,6 +178,10 @@ local plugins = {
             skip_ts = { "string" },
             skip_unbalanced = true,
         },
+    },
+    -- Комментарии
+    {
+        "echasnovski/mini.comment",
     },
     -- Тема
     {
