@@ -5,7 +5,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 
-vim.opt.showmode = false
+vim.opt.showmode = true
 
 vim.opt.shiftwidth = 4
 vim.opt.breakindent = true
@@ -77,11 +77,30 @@ local plugins = {
             }
         },
         config = function()
+            -- Включить диагностику в редакторе
+            vim.diagnostic.config({
+                virtual_text = true,
+                signs = true,
+                underline = true,
+                update_in_insert = true,
+                severity_sort = true,
+                float = {
+                    border = "rounded",
+                }
+            })
+
             require("lspconfig").lua_ls.setup {}
             require("lspconfig").ts_ls.setup {}
             require("lspconfig").gopls.setup {}
 
-            vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end);
+            -- Горячие клавиши для прыжков по определениям (помимо клавиш по-умолачанию)
+            vim.keymap.set("n", "<leader>gd", function () vim.lsp.buf.definition() end)
+            vim.keymap.set("n", "<leader>gD", function () vim.lsp.buf.declaration() end)
+
+            -- Горячие клавиши для работы с диагностикой
+            vim.keymap.set("n", "<leader>df", function() vim.diagnostic.open_float() end);
+            vim.keymap.set("n", "<leader>d]", function() vim.diagnostic.goto_next() end);
+            vim.keymap.set("n", "<leader>d[", function() vim.diagnostic.goto_prev() end);
         end
     },
     -- Автодополнение
@@ -127,6 +146,19 @@ local plugins = {
                 "<cmd>lua require('fzf-lua').live_grep()<cr>",
                 desc = "Поиск текста в файлах",
             },
+            {
+                "<leader>dd",
+                function()
+                    require('fzf-lua').diagnostics_document()
+                end
+            },
+            {
+                "<leader>dw",
+                function()
+                    require('fzf-lua').diagnostics_workspace()
+                end
+            }
+
         },
     },
     -- Дерево файлов
