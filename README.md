@@ -11,6 +11,11 @@ TypeScript / JavaScript
 npm i -g typescript typescript-language-server
 ```
 
+ESLint
+```sh
+npm i -g vscode-langservers-extracted
+```
+
 Go
 ```sh
 go install golang.org/x/tools/gopls@latest
@@ -18,7 +23,10 @@ go install golang.org/x/tools/gopls@latest
 
 # To Do
 - [x] Диагностика ошибок в файлах и проекте, прыжки по выводу диагностики
-- [] Форматирование через eslint, prettier, go fmt (?)
+- [] Форматирование через
+    - [x] eslint
+    - [] prettier
+    - [] go fmt (?)
 - [] Фильтрация по расширениям файлов при поиске
 - [] Статус бар (режим, текущая строка, etc.)
 - [] Список открытых буферов (bufferline)

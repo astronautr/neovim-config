@@ -11,6 +11,10 @@ vim.opt.shiftwidth = 4
 vim.opt.breakindent = true
 vim.opt.linebreak = true
 
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undofile = true
+vim.o.autowrite = true
 vim.opt.confirm = true
 
 vim.opt.clipboard = "unnamedplus"
@@ -79,7 +83,11 @@ local plugins = {
         config = function()
             -- Включить диагностику в редакторе
             vim.diagnostic.config({
-                virtual_text = true,
+                virtual_text = {
+                    severity = {
+                        min = vim.diagnostic.severity.WARN
+                    }
+                },
                 signs = true,
                 underline = true,
                 update_in_insert = true,
@@ -93,9 +101,23 @@ local plugins = {
             require("lspconfig").ts_ls.setup {}
             require("lspconfig").gopls.setup {}
 
+            require("lspconfig").eslint.setup({
+                on_attach = function(_, bufnr)
+                    -- Автоисправление при сохранении
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        buffer = bufnr,
+                        command = "EslintFixAll",
+                    })
+                end,
+            })
+
             -- Горячие клавиши для прыжков по определениям (помимо клавиш по-умолачанию)
-            vim.keymap.set("n", "<leader>gd", function () vim.lsp.buf.definition() end)
-            vim.keymap.set("n", "<leader>gD", function () vim.lsp.buf.declaration() end)
+            vim.keymap.set("n", "<leader>gd", function() vim.lsp.buf.definition() end)
+            vim.keymap.set("n", "<leader>gD", function() vim.lsp.buf.declaration() end)
+
+            vim.keymap.set('n', '<leader>f', function()
+                vim.lsp.buf.format { async = true }
+            end)
 
             -- Горячие клавиши для работы с диагностикой
             vim.keymap.set("n", "<leader>df", function() vim.diagnostic.open_float() end);
