@@ -312,6 +312,21 @@ local plugins = {
             })
         end,
     },
+    {
+        'stevearc/aerial.nvim',
+        opts = {},
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
+        config = function()
+            require("aerial").setup({
+                on_attach = function()
+                    vim.keymap.set("n", "<leader>?", "<cmd>AerialToggle<CR>")
+                end,
+            })
+        end
+    },
     -- UI
     {
         "folke/noice.nvim",
@@ -320,7 +335,7 @@ local plugins = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
         },
-        config = function ()
+        config = function()
             require("noice").setup()
         end
     },
