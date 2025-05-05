@@ -19,6 +19,11 @@ vim.opt.confirm = true
 
 vim.opt.clipboard = "unnamedplus"
 
+vim.keymap.set({ "n", "v", "i" }, "<C-s>", function()
+    vim.lsp.buf.format({})
+    vim.cmd("wa")
+end)
+
 -- [[Подключаем менеджер пакетов]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
