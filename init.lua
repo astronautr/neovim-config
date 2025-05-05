@@ -179,8 +179,13 @@ local plugins = {
                 function()
                     require('fzf-lua').diagnostics_workspace()
                 end
+            },
+            {
+                "<S-e>",
+                function ()
+                    require('fzf-lua').buffers()
+                end
             }
-
         },
     },
     -- Дерево файлов
@@ -236,6 +241,32 @@ local plugins = {
     -- Комментарии
     {
         "echasnovski/mini.comment",
+    },
+    -- Список открытых буферов и перемещение между ними
+    {
+        "akinsho/bufferline.nvim",
+        event = "VeryLazy",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        keys = {
+            { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+            { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+        },
+        opts = {
+            options = {
+                offsets = {
+                    {
+                        filetype = "neo-tree",
+                        text = "Neo-tree",
+                        highlight = "Directory",
+                        text_align = "left",
+                    },
+                },
+            },
+        },
+        config = function(_, opts)
+            vim.opt.termguicolors = true
+            require("bufferline").setup(opts)
+        end,
     },
     -- Тема
     {
