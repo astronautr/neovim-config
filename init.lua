@@ -5,7 +5,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 
-vim.opt.showmode = true
+vim.opt.showmode = false
 
 vim.opt.shiftwidth = 4
 vim.opt.breakindent = true
@@ -182,7 +182,7 @@ local plugins = {
             },
             {
                 "<S-e>",
-                function ()
+                function()
                     require('fzf-lua').buffers()
                 end
             }
@@ -266,6 +266,45 @@ local plugins = {
         config = function(_, opts)
             vim.opt.termguicolors = true
             require("bufferline").setup(opts)
+        end,
+    },
+    -- Статусная строка
+    {
+        "nvim-lualine/lualine.nvim",
+        pin = true,
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("lualine").setup({
+                options = {
+                    theme = "auto",
+                    component_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
+                    globalstatus = false,
+                    disabled_filetypes = { "neo-tree" }
+                },
+                sections = {
+                    lualine_a = { "mode" },
+                    lualine_b = { "branch", "diff", "diagnostics" },
+                    lualine_c = {
+                        {
+                            "filename",
+                            path = 1,
+                            symbols = { modified = "[+]", readonly = "[-]", unnamed = "[No Name]" },
+                        },
+                    },
+                    lualine_x = { "encoding", "fileformat", "filetype" },
+                    lualine_y = { "progress" },
+                    lualine_z = { "location" },
+                },
+                inactive_sections = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = { "filename" },
+                    lualine_x = { "location" },
+                    lualine_y = {},
+                    lualine_z = {},
+                },
+            })
         end,
     },
     -- Тема
