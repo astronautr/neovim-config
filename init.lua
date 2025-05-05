@@ -24,6 +24,11 @@ vim.keymap.set({ "n", "v", "i" }, "<C-s>", function()
     vim.cmd("wa")
 end)
 
+vim.keymap.set("n", "<M-l>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<M-h>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<M-k>", ":resize -2<CR>")
+vim.keymap.set("n", "<M-j>", ":resize +2<CR>")
+
 -- [[Подключаем менеджер пакетов]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
