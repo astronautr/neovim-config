@@ -329,8 +329,8 @@ local plugins = {
         },
         config = function()
             require("aerial").setup({
-                on_attach = function()
-                    vim.keymap.set("n", "<leader>?", "<cmd>AerialNavToggle<CR>")
+                on_attach = function(bufnr)
+                    vim.keymap.set("n", "<leader>?", "<cmd>AerialToggle<CR>", { buffer = bufnr })
                 end,
             })
         end
