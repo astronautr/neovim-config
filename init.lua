@@ -19,6 +19,8 @@ vim.opt.confirm = true
 
 vim.opt.clipboard = "unnamedplus"
 
+vim.keymap.set({ "n", "v" }, "<leader>w", ":bd<CR>", { noremap = true, silent = true })
+
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", function()
     vim.lsp.buf.format({})
     vim.cmd("wa")
@@ -124,6 +126,7 @@ local plugins = {
             -- Горячие клавиши для прыжков по определениям (помимо клавиш по-умолачанию)
             vim.keymap.set("n", "<leader>gd", function() vim.lsp.buf.definition() end)
             vim.keymap.set("n", "<leader>gD", function() vim.lsp.buf.declaration() end)
+            vim.keymap.set("n", "<leader>gt", function() vim.lsp.buf.type_definition() end)
 
             vim.keymap.set('n', '<leader>f', function()
                 vim.lsp.buf.format { async = true }
@@ -327,7 +330,7 @@ local plugins = {
         config = function()
             require("aerial").setup({
                 on_attach = function()
-                    vim.keymap.set("n", "<leader>?", "<cmd>AerialToggle<CR>")
+                    vim.keymap.set("n", "<leader>?", "<cmd>AerialNavToggle<CR>")
                 end,
             })
         end
