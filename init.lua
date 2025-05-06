@@ -21,7 +21,7 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.keymap.set({ "n", "v" }, "<leader>w", ":bd<CR>", { noremap = true, silent = true })
 
-vim.keymap.set({ "n", "v", "i" }, "<C-s>", function()
+vim.keymap.set({ "n", "v", "i" }, "<C-a>", function()
     vim.lsp.buf.format({})
     vim.cmd("wa")
 end)
