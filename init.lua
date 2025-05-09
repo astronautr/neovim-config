@@ -1,13 +1,17 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.opt.shiftwidth = 4
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 
 vim.opt.showmode = false
 
-vim.opt.shiftwidth = 4
 vim.opt.breakindent = true
 vim.opt.linebreak = true
 
@@ -148,7 +152,10 @@ local plugins = {
             appearance = {
                 nerd_font_variant = 'mono'
             },
-            completion = { documentation = { auto_show = false } },
+            completion = {
+                documentation = { auto_show = true },
+                ghost_text = { enabled = true }
+            },
             sources = {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
@@ -349,17 +356,28 @@ local plugins = {
     },
     -- Тема
     {
-        "catppuccin/nvim",
-        name = "catppuccin",
+        "rose-pine/neovim",
+        name = "rose-pine",
         priority = 1000,
-        pin = true,
         config = function()
-            require("catppuccin").setup({
-                flavour = "macchiato",
+            require("rose-pine").setup({
+                variant = "moon"
             })
-            vim.cmd.colorscheme("catppuccin")
-        end,
+
+            vim.cmd.colorscheme("rose-pine")
+        end
     },
+    --     "catppuccin/nvim",
+    --     name = "catppuccin",
+    --     priority = 1000,
+    --     pin = true,
+    --     config = function()
+    --         require("catppuccin").setup({
+    --             flavour = "macchiato",
+    --         })
+    --         vim.cmd.colorscheme("catppuccin")
+    --     end,
+    -- },
 }
 
 -- Загрузка плагинов
