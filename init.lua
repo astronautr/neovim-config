@@ -327,6 +327,7 @@ local plugins = {
             })
         end,
     },
+    -- Навигация по функциям в текущем файле
     {
         'stevearc/aerial.nvim',
         opts = {},
@@ -339,6 +340,46 @@ local plugins = {
                 on_attach = function(bufnr)
                     vim.keymap.set("n", "<leader>?", "<cmd>AerialToggle<CR>", { buffer = bufnr })
                 end,
+            })
+        end
+    },
+    -- Открытие файла на git сервере
+    {
+        "linrongbin16/gitlinker.nvim",
+        cmd = "GitLink",
+        opts = {},
+        keys = {
+            { "<leader>gl", "<cmd>GitLink<cr>",  mode = { "n", "v" }, desc = "Yank git link" },
+            { "<leader>gL", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open git link" },
+        },
+        config = function()
+            require("gitlinker").setup({
+                router = {
+                    browse = {
+                        ["^stash%.msk%.avito%.ru"] = function(lk)
+                            local org, repo
+                            local pattern = ".*:7999/([^/]+)/([^/]+)%.git"
+
+                            -- Считываем пространство и название проекта
+                            org, repo = string.match(lk.remote_url, pattern)
+
+                            -- Формируем URL BitBucket
+                            local url = "https://stash.msk.avito.ru/projects/" .. org .. "/repos/" .. repo
+                            url = url .. "/browse/" .. lk.file
+                            url = url .. "?at=" .. lk.rev
+
+                            -- Добавляем номера строк
+                            if lk.lstart == lk.lend then
+                                url = url .. "#" .. lk.lstart
+                            else
+                                -- Диапозон url
+                                url = url .. "#" .. lk.lstart .. "-" .. lk.lend
+                            end
+
+                            return url
+                        end,
+                    },
+                }
             })
         end
     },
