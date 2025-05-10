@@ -258,10 +258,6 @@ local plugins = {
             skip_unbalanced = true,
         },
     },
-    -- Комментарии
-    {
-        "echasnovski/mini.comment",
-    },
     -- Список открытых буферов и перемещение между ними
     {
         "akinsho/bufferline.nvim",
@@ -287,6 +283,13 @@ local plugins = {
             vim.opt.termguicolors = true
             require("bufferline").setup(opts)
         end,
+    },
+    -- Комментарии
+    {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
     },
     -- Статусная строка
     {
@@ -349,9 +352,9 @@ local plugins = {
         config = function()
             require("socks-copypath").setup()
 
-            vim.keymap.set({"n", "v"}, "<leader>cp", "<cmd>CopyPath<cr>")
-            vim.keymap.set({"n", "v"}, "<leader>cr", "<cmd>CopyRelativePath<cr>")
-            vim.keymap.set({"n", "v"}, "<leader>cn", "<cmd>CopyFileName<cr>")
+            vim.keymap.set({ "n", "v" }, "<leader>cp", "<cmd>CopyPath<cr>")
+            vim.keymap.set({ "n", "v" }, "<leader>cr", "<cmd>CopyRelativePath<cr>")
+            vim.keymap.set({ "n", "v" }, "<leader>cn", "<cmd>CopyFileName<cr>")
         end,
     },
     -- Git blame
