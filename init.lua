@@ -343,6 +343,31 @@ local plugins = {
             })
         end
     },
+    -- Копировать путь до файла
+    {
+        "ohakutsu/socks-copypath.nvim",
+        config = function()
+            require("socks-copypath").setup()
+
+            vim.keymap.set({"n", "v"}, "<leader>cp", "<cmd>CopyPath<cr>")
+            vim.keymap.set({"n", "v"}, "<leader>cr", "<cmd>CopyRelativePath<cr>")
+            vim.keymap.set({"n", "v"}, "<leader>cn", "<cmd>CopyFileName<cr>")
+        end,
+    },
+    -- Git blame
+    {
+        "lewis6991/gitsigns.nvim",
+        cmd = "Gitsigns",
+        keys = {
+            { "<leader>gb", "<cmd>Gitsigns blame<cr>", mode = { "n", "v" } }
+        },
+        config = function()
+            require("gitsigns").setup({
+                current_line_blame = true,
+                current_line_blame_opts = { delay = 300 }
+            })
+        end
+    },
     -- Открытие файла на git сервере
     {
         "linrongbin16/gitlinker.nvim",
