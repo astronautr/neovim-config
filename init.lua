@@ -170,6 +170,14 @@ local plugins = {
         opts = {},
         keys = {
             {
+                "grr",
+                "<cmd>lua require('fzf-lua').lsp_references()<cr>"
+            },
+            {
+                "gri",
+                "<cmd>lua require('fzf-lua').lsp_implementations()<cr>"
+            },
+            {
                 "<C-p>",
                 "<cmd>lua require('fzf-lua').files()<cr>",
                 desc = "Поиск файлов",
@@ -277,6 +285,7 @@ local plugins = {
                         text_align = "left",
                     },
                 },
+                separator_style = "slant"
             },
         },
         config = function(_, opts)
@@ -360,16 +369,17 @@ local plugins = {
     -- Git blame
     {
         "lewis6991/gitsigns.nvim",
+        event = "BufEnter",
         cmd = "Gitsigns",
         keys = {
-            { "<leader>gb", "<cmd>Gitsigns blame<cr>", mode = { "n", "v" } }
+            { "<leader>gb", "<cmd>Gitsigns blame<cr>",        mode = { "n", "v" } },
+            { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",   mode = { "n", "v" } },
+            { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", mode = { "n", "v" } },
         },
-        config = function()
-            require("gitsigns").setup({
+        opts = {
                 current_line_blame = true,
                 current_line_blame_opts = { delay = 300 }
-            })
-        end
+        }
     },
     -- Открытие файла на git сервере
     {
