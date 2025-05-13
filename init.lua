@@ -355,6 +355,11 @@ local plugins = {
             })
         end
     },
+    -- Показать контекст в коде, будь то функция или блок if / switch, внутри которого находимся
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        opts = {}
+    },
     -- Копировать путь до файла
     {
         "ohakutsu/socks-copypath.nvim",
@@ -377,8 +382,8 @@ local plugins = {
             { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", mode = { "n", "v" } },
         },
         opts = {
-                current_line_blame = true,
-                current_line_blame_opts = { delay = 300 }
+            current_line_blame = true,
+            current_line_blame_opts = { delay = 300 }
         }
     },
     -- Открытие файла на git сервере
