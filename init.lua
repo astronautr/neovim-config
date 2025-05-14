@@ -358,7 +358,9 @@ local plugins = {
     -- Показать контекст в коде, будь то функция или блок if / switch, внутри которого находимся
     {
         "nvim-treesitter/nvim-treesitter-context",
-        opts = {}
+        opts = {
+            max_lines = 3
+        }
     },
     -- Копировать путь до файла
     {
@@ -425,6 +427,11 @@ local plugins = {
                 }
             })
         end
+    },
+    -- Всегда центрировать код (авто `zz`)
+    {
+        'arnamak/stay-centered.nvim',
+        opts = {}
     },
     -- UI
     {
